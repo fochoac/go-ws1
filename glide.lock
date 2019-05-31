@@ -1,6 +1,14 @@
-hash: 8526bb69fe9668ba8543991e9d4eb077d06bf287201b9662b427a88d03405dcb
-updated: 2019-05-30T21:49:03.6459101-05:00
+hash: d1d34fed0965f44756ccf07a19deff217caa0cf6ab0526f620c57243b2b25685
+updated: 2019-05-31T16:24:14.573396917-05:00
 imports:
+- name: github.com/fochoac/go-model-ws
+  version: e1ec4ea3f04a1556e82d49f50d2cb95b30f6d712
+  subpackages:
+  - prueba
+- name: github.com/fochoac/go-util-ws
+  version: ee640b5dfb85ad8d5916caf5a4390265d705ebfc
+  subpackages:
+  - constantes
 - name: github.com/gin-contrib/sse
   version: 5545eab6dad3bbbd6c5ae9186383c2a9d23c0dae
 - name: github.com/gin-gonic/gin

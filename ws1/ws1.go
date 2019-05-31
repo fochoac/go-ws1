@@ -3,6 +3,9 @@ package ws1
 import (
 	"net/http"
 
+	"github.com/fochoac/go-util-ws/constantes"
+
+	"github.com/fochoac/go-model-ws/prueba"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,30 +23,29 @@ func Iniciar(router1 *gin.Engine) {
 }
 
 func initializeRoutes() {
-	router.POST("/api", handleVerification)
-	router.OPTIONS("/api", handleVerification)
+	router.POST("/api/testPost", listarTag)
 	router.GET("/api", handleGet)
 }
 
-func handleGet(c *gin.Context) {
-	message, _ := c.GetQuery("m")
-	c.String(http.StatusOK, "Get works! you sent: "+message)
+func listarTag(c *gin.Context) {
+	tag := prueba.Tag{
+		Name:        "Ecuador",
+		Description: "Pais",
+		ExtraData: prueba.TagExtra{
+			Extra: "Informacion adicional",
+		},
+	}
+	datos := make([]prueba.Tag, 10)
+	for index := 0; index < len(datos); index++ {
+		datos[index] = tag
+	}
+	respuesta := prueba.RetornoTag{
+		CodigoRetorno: constantes.Ok(),
+		Tag:           datos,
+	}
+	c.JSON(http.StatusOK, respuesta)
 }
 
-func handleVerification(c *gin.Context) {
-	if c.Request.Method == "OPTIONS" {
-		// setup headers
-		c.Header("Allow", "POST, GET, OPTIONS")
-		c.Header("Access-Control-Allow-Origin", "*")
-		c.Header("Access-Control-Allow-Headers", "origin, content-type, accept")
-		c.Header("Content-Type", "application/json")
-		c.Status(http.StatusOK)
-	} else if c.Request.Method == "POST" {
-		var u User
-		c.BindJSON(&u)
-		c.JSON(http.StatusOK, gin.H{
-			"user": u.Username,
-			"pass": u.Password,
-		})
-	}
+func handleGet(c *gin.Context) {
+	c.String(http.StatusOK, "ping")
 }
