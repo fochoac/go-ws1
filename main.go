@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/fochoac/go-ws1/model"
+	model "github.com/fochoac/go-model-ws/persona"
 	"github.com/fochoac/go-ws1/service"
 )
 
