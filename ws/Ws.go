@@ -1,4 +1,4 @@
-package ws1
+package ws
 
 import (
 	"net/http"
@@ -24,15 +24,15 @@ func initializeRoutes() {
 }
 
 func ListarPersonasActivasNativo(c *gin.Context) {
-
-	c.JSON(http.StatusOK, service.ListarPersonasActivasNativo)
+	personas := service.ListarPersonasActivasNativo()
+	c.JSON(http.StatusOK, personas)
 }
 
 func ListarNombrePersonasActivasNativo(c *gin.Context) {
-
-	c.JSON(http.StatusOK, service.ListarNombrePersonasActivasNativo)
+	personas := service.ListarNombrePersonasActivasNativo()
+	c.JSON(http.StatusOK, personas)
 }
 func ListarPersonasActivas(c *gin.Context) {
-
-	c.JSON(http.StatusOK, service.ListarPersonasActivas)
+	personas := service.ListarPersonasActivas()
+	c.JSON(http.StatusOK, personas)
 }
